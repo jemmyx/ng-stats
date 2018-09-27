@@ -34,13 +34,13 @@ export class StatisticsComponent implements OnInit {
   async getStats(){
 
 	  /* articles - derniers publications */
-	  await axios.get('http://charts.mayan-payments.com/api/wmb/getData?type=9')
+	  await axios.get('//charts.mayan-payments.com/api/wmb/getData?type=9')
 		.then(response => {
 		  this.lastPostsCreated = response.data.data.multiData.dataSet;
 		})	  
 
 	  /* articles les plus populaires */
-	  await axios.get('http://charts.mayan-payments.com/api/wmb/getData?type=8')
+	  await axios.get('//charts.mayan-payments.com/api/wmb/getData?type=8')
 		.then(response => {
 
 		  this.dataSource12 = {
@@ -52,7 +52,7 @@ export class StatisticsComponent implements OnInit {
 
 	  /* articles les plus populaires */
 	  
-	  await axios.get('http://charts.mayan-payments.com/api/wmb/getData?type=7')
+	  await axios.get('//charts.mayan-payments.com/api/wmb/getData?type=7')
 		.then(response => {
 
 		  response.data.data.chartHeader.subCaption = ''
@@ -66,7 +66,7 @@ export class StatisticsComponent implements OnInit {
 
 	  /* 7 derniesr jours */
 	  
-	  await axios.get('http://charts.mayan-payments.com/api/wmb/getData?type=6')
+	  await axios.get('//charts.mayan-payments.com/api/wmb/getData?type=6')
 		.then(response => {
 			
 			  console.log(response.data.data.chartHeader)
@@ -91,7 +91,7 @@ export class StatisticsComponent implements OnInit {
 			  };
 		})
 
-	  await axios.get('http://charts.mayan-payments.com/api/wmb/getData?type=5')
+	  await axios.get('//charts.mayan-payments.com/api/wmb/getData?type=5')
 		.then(response => {
 
 		  this.dataSource5 = {
@@ -101,7 +101,7 @@ export class StatisticsComponent implements OnInit {
 
 		})	  
 	  
-	  await axios.get('http://charts.mayan-payments.com/api/wmb/getData?type=4')
+	  await axios.get('//charts.mayan-payments.com/api/wmb/getData?type=4')
 		.then(response => {
 			
 		  this.dataSource4 = {
@@ -111,7 +111,7 @@ export class StatisticsComponent implements OnInit {
 
 		})	  
 	  
-	  await axios.get('http://charts.mayan-payments.com/api/wmb/getData?type=3')
+	  await axios.get('//charts.mayan-payments.com/api/wmb/getData?type=3')
 		.then(response => {
 
 		  this.dataSource3 = {
@@ -121,7 +121,7 @@ export class StatisticsComponent implements OnInit {
 
 		})	  
 	  
-	  await axios.get('http://charts.mayan-payments.com/api/wmb/getData?type=1')
+	  await axios.get('//charts.mayan-payments.com/api/wmb/getData?type=1')
 		.then(response => {
 			
 			  this.dataSource = {
@@ -149,7 +149,7 @@ export class StatisticsComponent implements OnInit {
 			  };
 		})
 
-	  await axios.get('http://charts.mayan-payments.com/api/wmb/getData?type=2')
+	  await axios.get('//charts.mayan-payments.com/api/wmb/getData?type=2')
 		.then(response => {
 			
 			  /* datasource */
