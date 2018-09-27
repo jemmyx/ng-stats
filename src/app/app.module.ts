@@ -31,11 +31,13 @@ import Bar2D from 'fusioncharts/viz/bar2d';
 import Candlestick from 'fusioncharts/viz/candlestick';
 import Angulargauge from 'fusioncharts/viz/angulargauge';
 import Cylinder from 'fusioncharts/viz/cylinder';
+import Spline from 'fusioncharts/viz/spline';
+import Splinearea from 'fusioncharts/viz/splinearea';
 
 import { StatisticsComponent } from './statistics/statistics.component';
 import { HomeComponent } from './home/home.component';
 
-FusionChartsModule.fcRoot(FusionCharts, Column2D, MSCombi2D, Pie2D, Pie3D, Bar2D, Candlestick, Angulargauge, Cylinder, FusionTheme, GammelTheme, CarbonTheme, ZuneTheme, OceanTheme, CandyTheme);
+FusionChartsModule.fcRoot(FusionCharts, Column2D, MSCombi2D, Pie2D, Pie3D, Bar2D, Candlestick, Angulargauge, Cylinder, Spline, Splinearea, FusionTheme, GammelTheme, CarbonTheme, ZuneTheme, OceanTheme, CandyTheme);
 
 /* end: composants graphiques */
 
@@ -52,7 +54,7 @@ const appRoutes:Routes = [
 	},
 	{
 		path:'', 
-		redirectTo:'/',
+		redirectTo:'statistics',
 		pathMatch: 'full'
 	},
 

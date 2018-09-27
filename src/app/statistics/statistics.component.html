@@ -4,6 +4,116 @@
 
 <div id="myfusioncharts">
 
+	<div class="row" style="margin-top:20px;">
+
+	  <div class="col-sm-6">
+		<fusioncharts
+			width="100%"
+			height="600"
+			type="mscombi2d"
+			[dataSource]="dataSource6">
+		</fusioncharts>
+	  </div>
+
+	  <div class="col-sm-6">
+
+		<h4>Last created</h4>
+		<table class="table" id="table-lastcreated">
+		  <thead>
+			<tr>
+			  <th scope="col">#</th>
+			  <th scope="col">Title</th>
+			  <th scope="col">Created</th>
+			</tr>
+		  </thead>
+		  <tbody>
+				<tr *ngFor="let item of lastPostsCreated">
+					<td>{{item.tid}}</td>
+					<td><a href="{{item.path_seo}}" target="_blank">{{item.title}}</a></td>
+					<td>{{item.dateCreation}}</td>
+				</tr>
+		  </tbody>
+		</table>
+
+	  </div>
+
+	</div>
+
+	<div class="row" style="margin-top:20px;">
+	  <div class="col-sm-12">
+		<fusioncharts
+			width="100%" 
+			height="600"
+			type="bar2d"
+			[dataSource]=dataSource7>
+		</fusioncharts>
+	  </div>
+	</div>
+
+	<div class="row" style="margin-top:20px;">
+	  <div class="col-sm-6">
+		<fusioncharts
+			width="100%" 
+			height="600"
+			type="pie2d"
+			[dataSource]=dataSource3>
+		</fusioncharts>
+	  </div>
+	  <div class="col-sm-6">
+		<fusioncharts
+			width="100%" 
+			height="600"
+			type="splinearea"
+			[dataSource]=dataSource12>
+		</fusioncharts>
+	  </div>
+	</div>
+
+	<div class="row" style="margin-top:20px;">
+
+	  <div class="col-sm-6">
+		<fusioncharts
+			width="100%"
+			height="600"
+			type="pie2d"
+			[dataSource]="dataSource4">
+		</fusioncharts>
+	  </div>
+
+	  <div class="col-sm-6">
+		<fusioncharts
+			width="100%"
+			height="600"
+			type="pie2d"
+			[dataSource]="dataSource5">
+		</fusioncharts>
+	  </div>
+
+	</div>
+
+	<div class="row" style="margin-top:20px;">
+
+	  <div class="col-sm-6">
+		<fusioncharts
+			width="100%"
+			height="600"
+			type="mscombi2d"
+			[dataSource]="dataSource2">
+		</fusioncharts>
+	  </div>
+
+	  <div class="col-sm-6">
+		<fusioncharts
+			width="100%"
+			height="600"
+			type="mscombi2d"
+			[dataSource]="dataSource">
+		</fusioncharts>
+	  </div>
+
+	</div>
+
+	<!--
 	<div class="row">
 
 	  <div class="col-sm-12">
@@ -51,84 +161,7 @@
 	  </div>
 
 	</div>
-
-	<div class="row">
-
-	  <div class="col-sm-6">
-		<fusioncharts
-			width="100%"
-			height="600"
-			type="mscombi2d"
-			[dataSource]="dataSource6">
-		</fusioncharts>
-	  </div>
-
-	  <div class="col-sm-6">
-		<fusioncharts
-			width="100%"
-			height="600"
-			type="mscombi2d"
-			[dataSource]="dataSource">
-		</fusioncharts>
-	  </div>
-
-	</div>
-
-	<div class="row" style="margin-top:20px;">
-	  <div class="col-sm-12">
-		<fusioncharts
-			width="100%" 
-			height="600"
-			type="bar2d"
-			[dataSource]=dataSource7>
-		</fusioncharts>
-	  </div>
-	</div>
-
-	<div class="row" style="margin-top:20px;">
-	  <div class="col-sm-12">
-		<fusioncharts
-			width="100%" 
-			height="600"
-			type="pie2d"
-			[dataSource]=dataSource3>
-		</fusioncharts>
-	  </div>
-	</div>
-
-	<div class="row" style="margin-top:20px;">
-
-	  <div class="col-sm-6">
-		<fusioncharts
-			width="100%"
-			height="600"
-			type="pie2d"
-			[dataSource]="dataSource4">
-		</fusioncharts>
-	  </div>
-
-	  <div class="col-sm-6">
-		<fusioncharts
-			width="100%"
-			height="600"
-			type="pie2d"
-			[dataSource]="dataSource5">
-		</fusioncharts>
-	  </div>
-
-	</div>
-
-	<div class="row" style="margin-top:20px;">
-
-	  <div class="col-sm-6">
-		<fusioncharts
-			width="100%"
-			height="600"
-			type="mscombi2d"
-			[dataSource]="dataSource2">
-		</fusioncharts>
-	  </div>
-
-	</div>
+	
+	-->
 
 </div>

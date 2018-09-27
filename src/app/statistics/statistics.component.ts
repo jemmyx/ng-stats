@@ -11,22 +11,182 @@ import axios from 'axios';
   templateUrl: './statistics.component.html',
   styleUrls: ['./statistics.component.css']
 })
+
 export class StatisticsComponent implements OnInit {
 
-  dataSource: Object;
-  dataSource2: Object;
-  dataSource3: Object;
-  dataSource4: Object;	//pie2d - support de navigation
-  dataSource5: Object;	//pie2d - langue par visiteur
-  dataSource6: Object;
-  dataSource7: Object;	//bar2d - articles les plus populaires
-  
-  dataSource8: Object;	//candelstick simple
-  dataSource9: Object;	//angulargauge
-  dataSource10: Object;	//cylinder
-  dataSource11: Object;	//candelstick with custom trends
+	lastPostsCreated: null;
+
+	dataSource: Object;
+	dataSource2: Object;
+	dataSource3: Object;
+	dataSource4: Object;	//pie2d - support de navigation
+	dataSource5: Object;	//pie2d - langue par visiteur
+	dataSource6: Object;	//mscombi2d - blog cree les 7 derniers jours
+	dataSource7: Object;	//bar2d - articles les plus populaires
+
+	dataSource8: Object;	//candelstick simple
+	dataSource9: Object;	//angulargauge
+	dataSource10: Object;	//cylinder
+	dataSource11: Object;	//candelstick with custom trends
+	dataSource12: Object;	//
+	dataSource13: Object;	//
 
   async getStats(){
+
+	  /* articles - derniers publications */
+	  await axios.get('http://charts.mayan-payments.com/api/wmb/getData?type=9')
+		.then(response => {
+		  this.lastPostsCreated = response.data.data.multiData.dataSet;
+		})	  
+
+	  /* articles les plus populaires */
+	  await axios.get('http://charts.mayan-payments.com/api/wmb/getData?type=8')
+		.then(response => {
+
+		  this.dataSource12 = {
+			"chart": response.data.data.chartHeader,
+			"data": response.data.data.multiData.dataSet
+		  };
+
+		})	  
+
+	  /* articles les plus populaires */
+	  
+	  await axios.get('http://charts.mayan-payments.com/api/wmb/getData?type=7')
+		.then(response => {
+
+		  response.data.data.chartHeader.subCaption = ''
+		  response.data.data.chartHeader.yAxisName = 'Vues'
+		  this.dataSource7 = {
+			chart: response.data.data.chartHeader,
+			data:response.data.data.chartData, 
+		  };
+
+		})	  
+
+	  /* 7 derniesr jours */
+	  
+	  await axios.get('http://charts.mayan-payments.com/api/wmb/getData?type=6')
+		.then(response => {
+			
+			  console.log(response.data.data.chartHeader)
+			  
+			  this.dataSource6 = {
+				  "chart": response.data.data.chartHeader,
+				  "categories": [{							//	period de temps
+					 "category": response.data.data.multiData.period
+				  }],
+				  "dataset": [
+				  {
+					 "seriesName": "Articles",	
+					 "renderAs": "line",
+					 "data": response.data.data.multiData.dataSet
+				  },
+				  {
+					 "seriesName": "Groupes",
+					 "renderAs": "area",
+					 "data": response.data.data.multiData.dataSet2
+				  }, 
+				  ]
+			  };
+		})
+
+	  await axios.get('http://charts.mayan-payments.com/api/wmb/getData?type=5')
+		.then(response => {
+
+		  this.dataSource5 = {
+			chart: response.data.data.chartHeader,
+			data:response.data.data.chartData, 
+		  };
+
+		})	  
+	  
+	  await axios.get('http://charts.mayan-payments.com/api/wmb/getData?type=4')
+		.then(response => {
+			
+		  this.dataSource4 = {
+			chart: response.data.data.chartHeader,
+			data:response.data.data.chartData, 
+		  };
+
+		})	  
+	  
+	  await axios.get('http://charts.mayan-payments.com/api/wmb/getData?type=3')
+		.then(response => {
+
+		  this.dataSource3 = {
+			chart: response.data.data.chartHeader,
+			data:response.data.data.chartData, 
+		  };
+
+		})	  
+	  
+	  await axios.get('http://charts.mayan-payments.com/api/wmb/getData?type=1')
+		.then(response => {
+			
+			  this.dataSource = {
+				  "chart": response.data.data.chartHeader,
+				  "categories": [{							//	period de temps
+					 "category": response.data.data.multiData.period
+				  }],
+				  "dataset": [
+				  {								//	inscription sponsorise
+					 "seriesName": "Données",	
+					 "data": response.data.data.multiData.dataSet
+				  },
+				  // {
+					 // "seriesName": "Inscriptions",		//	inscriptions
+					 // "renderAs": "line",
+					 // "data": response.data.multiData.dataSet2
+				  // }, 
+				  // {
+					 // "seriesName": "Inscr. parrainées",	// brulage de coupons 5chf
+					 // "renderAs": "area",
+					 // "showAnchors": "0",
+					 // "data": response.data.multiData.dataSet3
+				  // },
+				  ]
+			  };
+		})
+
+	  await axios.get('http://charts.mayan-payments.com/api/wmb/getData?type=2')
+		.then(response => {
+			
+			  /* datasource */
+			  this.dataSource2 = {
+				  "chart": response.data.data.chartHeader,
+				  "categories": [{							//	period de temps
+					 "category": response.data.data.multiData.period
+				  }],
+				  "dataset": [
+				  {								//	inscription sponsorise
+					 "seriesName": "Données",	
+					 "data": response.data.data.multiData.dataSet
+				  },
+				  // {
+					 // "seriesName": "Inscriptions",		//	inscriptions
+					 // "renderAs": "line",
+					 // "data": response.data.multiData.dataSet2
+				  // }, 
+				  // {
+					 // "seriesName": "Inscr. parrainées",	// brulage de coupons 5chf
+					 // "renderAs": "area",
+					 // "showAnchors": "0",
+					 // "data": response.data.multiData.dataSet3
+				  // },
+				  ]
+			  };
+
+		})
+
+
+
+
+
+
+
+
+
 
 	  this.dataSource11 = {
 		  
@@ -1829,128 +1989,9 @@ export class StatisticsComponent implements OnInit {
 		  
 	  }
 
-	  /* articles les plus populaires */
-	  await axios.get('http://charts.mayan-payments.com/api/wmb/getData?type=7')
-		.then(response => {
 
-		  response.data.data.chartHeader.subCaption = ''
-		  response.data.data.chartHeader.yAxisName = 'Vues'
-		  this.dataSource7 = {
-			chart: response.data.data.chartHeader,
-			data:response.data.data.chartData, 
-		  };
 
-		})	  
 
-	  await axios.get('http://charts.mayan-payments.com/api/wmb/getData?type=6')
-		.then(response => {
-			  this.dataSource6 = {
-				  "chart": response.data.data.chartHeader,
-				  "categories": [{							//	period de temps
-					 "category": response.data.data.multiData.period
-				  }],
-				  "dataset": [
-				  {
-					 "seriesName": "Articles",	
-					 "renderAs": "line",
-					 "data": response.data.data.multiData.dataSet
-				  },
-				  {
-					 "seriesName": "Groupes",
-					 "renderAs": "area",
-					 "data": response.data.data.multiData.dataSet2
-				  }, 
-				  ]
-			  };
-		})
-
-	  await axios.get('http://charts.mayan-payments.com/api/wmb/getData?type=5')
-		.then(response => {
-
-		  this.dataSource5 = {
-			chart: response.data.data.chartHeader,
-			data:response.data.data.chartData, 
-		  };
-
-		})	  
-	  
-	  await axios.get('http://charts.mayan-payments.com/api/wmb/getData?type=4')
-		.then(response => {
-			
-		  this.dataSource4 = {
-			chart: response.data.data.chartHeader,
-			data:response.data.data.chartData, 
-		  };
-
-		})	  
-	  
-	  await axios.get('http://charts.mayan-payments.com/api/wmb/getData?type=3')
-		.then(response => {
-
-		  this.dataSource3 = {
-			chart: response.data.data.chartHeader,
-			data:response.data.data.chartData, 
-		  };
-
-		})	  
-	  
-	  await axios.get('http://charts.mayan-payments.com/api/wmb/getData?type=1')
-		.then(response => {
-			
-			  this.dataSource = {
-				  "chart": response.data.data.chartHeader,
-				  "categories": [{							//	period de temps
-					 "category": response.data.data.multiData.period
-				  }],
-				  "dataset": [
-				  {								//	inscription sponsorise
-					 "seriesName": "Données",	
-					 "data": response.data.data.multiData.dataSet
-				  },
-				  // {
-					 // "seriesName": "Inscriptions",		//	inscriptions
-					 // "renderAs": "line",
-					 // "data": response.data.multiData.dataSet2
-				  // }, 
-				  // {
-					 // "seriesName": "Inscr. parrainées",	// brulage de coupons 5chf
-					 // "renderAs": "area",
-					 // "showAnchors": "0",
-					 // "data": response.data.multiData.dataSet3
-				  // },
-				  ]
-			  };
-		})
-
-	  await axios.get('http://charts.mayan-payments.com/api/wmb/getData?type=2')
-		.then(response => {
-			
-			  /* datasource */
-			  this.dataSource2 = {
-				  "chart": response.data.data.chartHeader,
-				  "categories": [{							//	period de temps
-					 "category": response.data.data.multiData.period
-				  }],
-				  "dataset": [
-				  {								//	inscription sponsorise
-					 "seriesName": "Données",	
-					 "data": response.data.data.multiData.dataSet
-				  },
-				  // {
-					 // "seriesName": "Inscriptions",		//	inscriptions
-					 // "renderAs": "line",
-					 // "data": response.data.multiData.dataSet2
-				  // }, 
-				  // {
-					 // "seriesName": "Inscr. parrainées",	// brulage de coupons 5chf
-					 // "renderAs": "area",
-					 // "showAnchors": "0",
-					 // "data": response.data.multiData.dataSet3
-				  // },
-				  ]
-			  };
-
-		})
 
   }
 

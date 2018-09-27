@@ -1,0 +1,14 @@
+.dashboard-version{
+	color: white;
+	float: left;
+	margin: 0 3px;
+	margin-top: 12px;
+	font-size: 12px;
+	font-weight: normal;
+}
+
+header{
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
